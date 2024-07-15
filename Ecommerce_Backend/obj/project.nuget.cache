@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EqJfnvfrQbD9ebavy3EVQURLS5E/N473AJ95lv25FzuPWMMAM/YdJGYqzJZGiqO9jM59XwnAOfREduDkHfEzdw==",
+  "dgSpecHash": "OzvVqbOUzRGOGxZoLKWUONZBln8ZfruD8LKRs0Sy8XhRSJ1/Ujxur1VBJSDbvzsrHpwrNsKm/41hHnUQAaRDhA==",
   "success": true,
-  "projectFilePath": "C:\\programming\\platzi\\c-sharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
+  "projectFilePath": "C:\\programming\\platzi\\csharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julio\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\julio\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

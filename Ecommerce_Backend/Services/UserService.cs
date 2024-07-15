@@ -1,4 +1,5 @@
 ﻿using Ecommerce_Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce_Backend.Services
 {
@@ -17,10 +18,16 @@ namespace Ecommerce_Backend.Services
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task<User> GetUserByEmailAndPassword(string email, string password)
+        {
+            return await _context.Users.Where(u => u.Email == email && u.Password == password).FirstOrDefaultAsync();
+        }
     }
 
     public interface IUserService
     {
         Task<User> Save(User user);
+        Task<User> GetUserByEmailAndPassword(string email, string password);
     }
 }

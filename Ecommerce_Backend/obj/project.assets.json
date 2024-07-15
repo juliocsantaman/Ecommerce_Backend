@@ -4522,11 +4522,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\programming\\platzi\\c-sharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
+      "projectUniqueName": "C:\\programming\\platzi\\csharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
       "projectName": "Ecommerce_Backend",
-      "projectPath": "C:\\programming\\platzi\\c-sharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
+      "projectPath": "C:\\programming\\platzi\\csharp\\Ecommerce_Backend\\Ecommerce_Backend\\Ecommerce_Backend.csproj",
       "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
-      "outputPath": "C:\\programming\\platzi\\c-sharp\\Ecommerce_Backend\\Ecommerce_Backend\\obj\\",
+      "outputPath": "C:\\programming\\platzi\\csharp\\Ecommerce_Backend\\Ecommerce_Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config",

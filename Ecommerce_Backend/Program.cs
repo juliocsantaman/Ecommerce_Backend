@@ -18,6 +18,18 @@ builder.Services.AddSqlServer<UserContext>(builder.Configuration.GetConnectionSt
 
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+               builder =>
+               {
+                   builder.WithOrigins("http://localhost:4200") // La URL de tu frontend Angular
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+               });
+});
+
+
 
 var app = builder.Build();
 
@@ -28,9 +40,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthorization();
+
 
 app.MapControllers();
 

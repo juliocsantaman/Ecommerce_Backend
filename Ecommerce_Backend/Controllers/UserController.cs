@@ -16,8 +16,8 @@ namespace Ecommerce_Backend.Controllers
             this.userService = userService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] User user)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] User user)
         {
             try
             {
@@ -33,6 +33,22 @@ namespace Ecommerce_Backend.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
             }
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> Login([FromBody] LoginModel login)
+        {
+            User user = await userService.GetUserByEmailAndPassword(login.Email, login.Password);
+
+            if(user == null)
+            {
+
+                return Unauthorized("Correo electrónico o contraseña incorrectos.");
+
+            }
+
+            return Ok(user);
+        }
+
 
 
     }

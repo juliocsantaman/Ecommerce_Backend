@@ -14,7 +14,7 @@ namespace Ecommerce_Backend.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public DateTime Created {  get; set; }
+        public string Created {  get; set; }
     }
 }
 
