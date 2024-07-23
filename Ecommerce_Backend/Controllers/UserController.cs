@@ -1,6 +1,11 @@
 ﻿using Ecommerce_Backend.Models;
 using Ecommerce_Backend.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Ecommerce_Backend.Controllers
 {
@@ -10,10 +15,14 @@ namespace Ecommerce_Backend.Controllers
     {
 
         IUserService userService;
+        private readonly IConfiguration _configuration;
 
-        public UserController(IUserService userService)
+
+        public UserController(IUserService userService, IConfiguration configuration)
         {
             this.userService = userService;
+            _configuration = configuration;
+
         }
 
         [HttpPost("register")]
@@ -46,7 +55,22 @@ namespace Ecommerce_Backend.Controllers
 
             }
 
-            return Ok(user);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["SecretKey"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                new Claim(ClaimTypes.Email, login.Email)
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+
+            return Ok(new { user = user, token = new { Token = tokenString } });
         }
 
 
