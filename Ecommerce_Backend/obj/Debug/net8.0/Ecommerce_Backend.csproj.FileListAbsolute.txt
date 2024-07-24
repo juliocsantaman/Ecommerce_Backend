@@ -146,6 +146,7 @@ C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Azure.Core.dll
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Azure.Identity.dll
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Humanizer.dll
+C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -275,4 +276,3 @@ C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\obj\Debug\net8.
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\obj\Debug\net8.0\Ecommerce_Backend.pdb
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\obj\Debug\net8.0\Ecommerce_Backend.genruntimeconfig.cache
 C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\obj\Debug\net8.0\ref\Ecommerce_Backend.dll
-C:\programming\platzi\csharp\Ecommerce_Backend\Ecommerce_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

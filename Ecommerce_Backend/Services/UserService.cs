@@ -23,11 +23,17 @@ namespace Ecommerce_Backend.Services
         {
             return await _context.Users.Where(u => u.Email == email && u.Password == password).FirstOrDefaultAsync();
         }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _context.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
+        }
     }
 
     public interface IUserService
     {
         Task<User> Save(User user);
         Task<User> GetUserByEmailAndPassword(string email, string password);
+        Task<User> GetUserByEmail(string email);
     }
 }

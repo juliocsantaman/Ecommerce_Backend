@@ -1,11 +1,11 @@
 ﻿using Ecommerce_Backend.Models;
 using Ecommerce_Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
+
 
 namespace Ecommerce_Backend.Controllers
 {
@@ -15,7 +15,7 @@ namespace Ecommerce_Backend.Controllers
     {
 
         IUserService userService;
-        private readonly IConfiguration _configuration;
+        IConfiguration _configuration;
 
 
         public UserController(IUserService userService, IConfiguration configuration)
@@ -56,7 +56,19 @@ namespace Ecommerce_Backend.Controllers
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["SecretKey"]);
+            //var key = Convert.FromBase64String(_configuration["SecretKey"]); // Clave secreta desde Base64
+            var secretKey = _configuration["SecretKey"];
+            //Console.WriteLine("secretKey: " + secretKey);
+            if (string.IsNullOrEmpty(secretKey))
+            {
+                throw new InvalidOperationException("La clave secreta no está configurada.");
+            }
+
+            var key = Convert.FromBase64String(secretKey);
+
+            //Console.WriteLine("Key (Hex): " + BitConverter.ToString(key).Replace("-", ""));
+
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -70,7 +82,37 @@ namespace Ecommerce_Backend.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
 
-            return Ok(new { user = user, token = new { Token = tokenString } });
+            return Ok(new { user = user, token = tokenString  });
+        }
+
+        [Authorize]
+        [HttpGet("getUserData")] 
+        public async Task<ActionResult<User>> GetUserData(string email)
+        {
+            try
+            {
+                User user = await userService.GetUserByEmail(email);
+
+                if (user == null)
+                {
+                    return Unauthorized("NOOOOOOOOOOOOOOOOO");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult GetProtectedData()
+        {
+            return Ok("This is protected data");
         }
 
 
