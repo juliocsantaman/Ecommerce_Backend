@@ -1,10 +1,14 @@
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Ecommerce_Backend;
 using Ecommerce_Backend.Middlewares;
+using Ecommerce_Backend.Models;
 using Ecommerce_Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<UserContext>(builder.Configuration.GetConnectionString("CnEcommerce"));
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ExcelService>();
 
 
 builder.Services.AddCors(options =>
@@ -114,6 +119,46 @@ builder.Services.AddAuthentication(options =>
         }
     };
 });
+
+// Data.
+ClientModel client1 = new ClientModel();
+client1.Id = 1;
+client1.Name = "Jhon Doe";
+ClientModel client2 = new ClientModel();
+client2.Id = 2;
+client2.Name = "Jane Smith";
+ClientModel client3 = new ClientModel();
+client3.Id = 3;
+client3.Name = "Julio Santaman";
+ClientModel client4 = new ClientModel();
+client4.Id = 4;
+client4.Name = "Claire Redfield";
+ClientModel client5 = new ClientModel();
+client5.Id = 5;
+client5.Name = "Leon Kennedy";
+
+ClientModel[] clients = [client1, client2, client3, client4, client5];
+
+ClientModel client6 = new ClientModel();
+client6.Id = 1;
+client6.Name = "Jessica RLz";
+
+
+ClientModel[] clients2 = [client6];
+
+string[] headers = new string[] { "ID", "NAME" };
+
+ExcelService excelService = new ExcelService();
+excelService.CreateWorkSheet("test1");
+excelService.CreateHeaders(headers);
+excelService.CreateRows(clients);
+excelService.SaveBook("C:\\Users\\julio\\OneDrive\\Desktop\\file.xlsx");
+
+excelService.CreateWorkSheet("test1");
+excelService.CreateHeaders(headers);
+excelService.CreateRows(clients2);
+excelService.SaveBook("C:\\Users\\julio\\OneDrive\\Desktop\\file2.xlsx");
+
 
 
 var app = builder.Build();
